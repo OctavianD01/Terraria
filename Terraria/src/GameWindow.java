@@ -1,5 +1,6 @@
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Font;
 
 import javax.swing.JButton;
@@ -12,17 +13,19 @@ public class GameWindow{
 	public GameWindow() {
 		//Creating window
 		
-		int size = 50;
+		int sizeY = 200;
+		int sizeX = (int)(sizeY * 2 * Math.PI);
 		
 		JFrame frame = new JFrame();
 		frame.setLayout(null);
-		frame.setSize(3500,2000);
+		frame.setSize(3840,2160);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setFocusable(true);
 		
-		Player player = new Player(new int[] {5,0});
+		Player player = new Player(new double[] {40, 40});
 		
-		World world = new World(size, player, 100);
+		World world = new World(sizeX, sizeY, player, 60);
+		ActionListeners actionListener = new ActionListeners(world);
 		
 		GameKL kl = new GameKL(world);
 		frame.addKeyListener(kl);
@@ -30,9 +33,10 @@ public class GameWindow{
 		
 		WorldPanel worldPanel = new WorldPanel(world);
 
+		worldPanel.addMouseListener(actionListener.onClick);
+		
 		Thread thread = new Thread(new GameLoop(world, kl, worldPanel));
 		thread.start();
-		
 		
 		frame.add(worldPanel);
 		worldPanel.setSize(frame.getSize());

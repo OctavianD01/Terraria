@@ -1,6 +1,9 @@
 import java.awt.Color;
 
-public class Space {
+import javax.swing.JButton;
+
+public class Space implements Inventoriable{
+	public JButton button;
 	int[] pos;
 	int state;
 	String type;
@@ -11,6 +14,7 @@ public class Space {
 		this.pos = pos;
 		this.state = state;
 		this.type = type;
+		button = new JButton();
 	}
 	
 	public void setColor() {
@@ -18,7 +22,5 @@ public class Space {
 		else if (type == "Dirt") color = Color.GREEN;
 		else if (type == "Stone") color = Color.LIGHT_GRAY;
 		else if (type == "Magma") color = Color.RED;
-	}
-	
-	
+	}	
 }

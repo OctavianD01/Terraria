@@ -1,27 +1,30 @@
 
 public class Player {
-	int[] pos;
-	double velocity;
+	double[] pos;
+	double[] velocity;
 	
 	int health;
 	int stamina;
 	int hunger;
 	int thirst;
 	
-	Item[][] inventory;
-	Item[] equipment;
+	Inventoriable[][] inventory = new Inventoriable[9][5];
 	
-	public Player(int[] pos) {
+	public Player(double[] pos) {
 		this.pos = pos;
-		velocity = 0;
+		
+		velocity = new double[] {0, 0};
 		
 		health = 100;
 		stamina = 100;
 		hunger = 0;
 		thirst = 0;
 		
-		inventory = new Item[15][6];
-		equipment = new Item[6];
+	}
+	
+	public void move(double x, double y) {
+		pos[0] += x;
+		pos[1] += y;
 	}
 	
 }

@@ -18,9 +18,7 @@ public class GameLoop implements Runnable{
 			{
 				Thread.sleep(50);
 				kl.tick();
-				world.update();
 				worldPanel.repaint();
-				System.out.println(kl.keys.size());
 			}
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
